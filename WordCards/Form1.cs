@@ -93,6 +93,9 @@ namespace WordCards
             txtWord.Text = word.Word;
             txtPhonogram.Text = word.Phonogram;
             txtExplain.Text = word.Explain;
+
+            // 換字後重新蓋上遮罩
+            UpdateCovers();
         }
 
         /// <summary>
@@ -112,19 +115,102 @@ namespace WordCards
         public frmWordCards()
         {
             InitializeComponent();
-            
+            InitCovers();
 
         }
+
+
+        // 在現有欄位下方加入
+        bool isMemoryMode = false;      // 是否背單字模式
+        bool isHideChinese = false;     // 是否隱藏中文模式
+        bool isHideEnglish = false;     // 是否隱藏英文模式
+
+
+        private void InitCovers()
+        {
+            picCoverChinese.Cursor = Cursors.Hand;
+            picCoverChinese.SendToBack();   // ← 取代 Visible = false
+
+            picCoverEnglish.Cursor = Cursors.Hand;
+            picCoverEnglish.SendToBack();   // ← 取代 Visible = false
+        }
+
+        private void UpdateCovers()
+        {
+            if (!isMemoryMode)
+            {
+                return;
+            }
+
+            if (isHideChinese)
+            {
+                picCoverChinese.Bounds = txtExplain.Bounds;
+                picCoverChinese.BringToFront();  // 蓋住中文
+                picCoverEnglish.SendToBack();
+            }
+            else if (isHideEnglish)
+            {
+                Rectangle r1 = txtWord.Bounds;
+                Rectangle r2 = txtPhonogram.Bounds;
+                picCoverEnglish.Bounds = Rectangle.Union(r1, r2);
+                picCoverEnglish.BringToFront();  // 蓋住英文
+                picCoverChinese.SendToBack();
+            }
+        }
+
+        private void picCoverChinese_Click(object sender, EventArgs e)
+        {
+            picCoverChinese.SendToBack();  // 沉底，露出中文
+        }
+
+        private void picCoverEnglish_Click(object sender, EventArgs e)
+        {
+            picCoverEnglish.SendToBack();  // 沉底，露出英文
+        }
+
+        // txtExplain (中文) 被點到 → 重新蓋上
+        private void txtExplain_Click(object sender, EventArgs e)
+        {
+            if (isMemoryMode && isHideChinese)
+                picCoverChinese.BringToFront();
+        }
+
+        // txtWord 被點到 → 重新蓋上
+        private void txtWord_Click(object sender, EventArgs e)
+        {
+            if (isMemoryMode && isHideEnglish)
+                picCoverEnglish.BringToFront();
+        }
+
+        // txtPhonogram 被點到 → 重新蓋上
+        private void txtPhonogram_Click(object sender, EventArgs e)
+        {
+            if (isMemoryMode && isHideEnglish)
+                picCoverEnglish.BringToFront();
+        }
+
+
+        private void btnHideChinese_Click(object sender, EventArgs e)
+        {
+            isHideChinese = true;
+            isHideEnglish = false;
+            btnHideChinese.BackColor = Color.LightCoral;   // 標記啟用
+            btnHideEnglish.BackColor = SystemColors.Control;
+            UpdateCovers();
+        }
+
+        private void btnHideEnglish_Click(object sender, EventArgs e)
+        {
+            isHideEnglish = true;
+            isHideChinese = false;
+            btnHideEnglish.BackColor = Color.LightCoral;
+            btnHideChinese.BackColor = SystemColors.Control;
+            UpdateCovers();
+        }
+
+
+
         
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lstWordList_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void frmWordCards_Load(object sender, EventArgs e)
         {
@@ -286,9 +372,49 @@ namespace WordCards
             }
         }
 
+
+
+        private void btnMemoryMode_Click(object sender, EventArgs e)
+        {
+            isMemoryMode = !isMemoryMode;
+
+            if (isMemoryMode)
+            {
+                btnMemoryMode.Text = "結束背單字";
+                btnMemoryMode.BackColor = Color.LightGreen;
+                UpdateCovers();
+            }
+            else
+            {
+                btnMemoryMode.Text = "背單字模式";
+                btnMemoryMode.BackColor = SystemColors.Control;
+                picCoverChinese.SendToBack(); // ← 修正
+                picCoverEnglish.SendToBack(); // ← 修正
+            }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            // 播放目前顯示的單字（不移動到下一個）
+            if (lstWordList.SelectedIndex >= 0)
+            {
+                PlayWord(_WordList[lstWordList.SelectedIndex]);
+            }
+        }
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lstWordList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
         private void picLogo_Click(object sender, EventArgs e)
         {
 
         }
+
     }
 }

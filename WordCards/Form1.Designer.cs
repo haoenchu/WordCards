@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.palMain = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnMemoryMode = new System.Windows.Forms.Button();
+            this.btnHideChinese = new System.Windows.Forms.Button();
+            this.btnHideEnglish = new System.Windows.Forms.Button();
             this.lstWordList = new System.Windows.Forms.ListBox();
             this.txtHelp = new System.Windows.Forms.Label();
             this.txtExplain = new System.Windows.Forms.Label();
@@ -37,17 +41,26 @@
             this.txtWord = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.btnAutoPlay = new System.Windows.Forms.Button();
+            this.picCoverChinese = new System.Windows.Forms.PictureBox();
+            this.picCoverEnglish = new System.Windows.Forms.PictureBox();
             this.sssWord = new System.Windows.Forms.StatusStrip();
             this.tsslMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.timPlayer = new System.Windows.Forms.Timer(this.components);
             this.palMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCoverChinese)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).BeginInit();
             this.sssWord.SuspendLayout();
             this.SuspendLayout();
             // 
             // palMain
             // 
             this.palMain.BackColor = System.Drawing.Color.NavajoWhite;
+            this.palMain.Controls.Add(this.pictureBox1);
+            this.palMain.Controls.Add(this.btnMemoryMode);
+            this.palMain.Controls.Add(this.btnHideChinese);
+            this.palMain.Controls.Add(this.btnHideEnglish);
             this.palMain.Controls.Add(this.lstWordList);
             this.palMain.Controls.Add(this.txtHelp);
             this.palMain.Controls.Add(this.txtExplain);
@@ -55,12 +68,57 @@
             this.palMain.Controls.Add(this.txtWord);
             this.palMain.Controls.Add(this.picLogo);
             this.palMain.Controls.Add(this.btnAutoPlay);
+            this.palMain.Controls.Add(this.picCoverChinese);
+            this.palMain.Controls.Add(this.picCoverEnglish);
             this.palMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.palMain.Location = new System.Drawing.Point(0, 0);
             this.palMain.Name = "palMain";
             this.palMain.Size = new System.Drawing.Size(595, 247);
             this.palMain.TabIndex = 0;
             this.palMain.Paint += new System.Windows.Forms.PaintEventHandler(this.palMain_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WordCards.Properties.Resources.sound;
+            this.pictureBox1.Location = new System.Drawing.Point(314, 55);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(51, 29);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnMemoryMode
+            // 
+            this.btnMemoryMode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMemoryMode.Location = new System.Drawing.Point(475, 148);
+            this.btnMemoryMode.Name = "btnMemoryMode";
+            this.btnMemoryMode.Size = new System.Drawing.Size(86, 23);
+            this.btnMemoryMode.TabIndex = 12;
+            this.btnMemoryMode.Text = "背單字模式";
+            this.btnMemoryMode.UseVisualStyleBackColor = true;
+            this.btnMemoryMode.Click += new System.EventHandler(this.btnMemoryMode_Click);
+            // 
+            // btnHideChinese
+            // 
+            this.btnHideChinese.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHideChinese.Location = new System.Drawing.Point(475, 206);
+            this.btnHideChinese.Name = "btnHideChinese";
+            this.btnHideChinese.Size = new System.Drawing.Size(86, 23);
+            this.btnHideChinese.TabIndex = 11;
+            this.btnHideChinese.Text = "隱藏中文";
+            this.btnHideChinese.UseVisualStyleBackColor = true;
+            this.btnHideChinese.Click += new System.EventHandler(this.btnHideChinese_Click);
+            // 
+            // btnHideEnglish
+            // 
+            this.btnHideEnglish.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHideEnglish.Location = new System.Drawing.Point(475, 177);
+            this.btnHideEnglish.Name = "btnHideEnglish";
+            this.btnHideEnglish.Size = new System.Drawing.Size(86, 23);
+            this.btnHideEnglish.TabIndex = 10;
+            this.btnHideEnglish.Text = "隱藏英文";
+            this.btnHideEnglish.UseVisualStyleBackColor = true;
+            this.btnHideEnglish.Click += new System.EventHandler(this.btnHideEnglish_Click);
             // 
             // lstWordList
             // 
@@ -70,13 +128,13 @@
             this.lstWordList.Location = new System.Drawing.Point(0, 0);
             this.lstWordList.Name = "lstWordList";
             this.lstWordList.Size = new System.Drawing.Size(120, 247);
-            this.lstWordList.TabIndex = 10;
+            this.lstWordList.TabIndex = 0;
             this.lstWordList.Click += new System.EventHandler(this.lstWordList_Click);
             // 
             // txtHelp
             // 
             this.txtHelp.ForeColor = System.Drawing.Color.Red;
-            this.txtHelp.Location = new System.Drawing.Point(461, 187);
+            this.txtHelp.Location = new System.Drawing.Point(124, 201);
             this.txtHelp.Name = "txtHelp";
             this.txtHelp.Size = new System.Drawing.Size(109, 34);
             this.txtHelp.TabIndex = 9;
@@ -88,11 +146,12 @@
             this.txtExplain.AutoSize = true;
             this.txtExplain.Font = new System.Drawing.Font("微軟正黑體", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.txtExplain.ForeColor = System.Drawing.Color.DimGray;
-            this.txtExplain.Location = new System.Drawing.Point(145, 87);
+            this.txtExplain.Location = new System.Drawing.Point(144, 96);
             this.txtExplain.Name = "txtExplain";
             this.txtExplain.Size = new System.Drawing.Size(44, 17);
             this.txtExplain.TabIndex = 8;
             this.txtExplain.Text = "label3";
+            this.txtExplain.Click += new System.EventHandler(this.txtExplain_Click);
             // 
             // txtPhonogram
             // 
@@ -104,6 +163,7 @@
             this.txtPhonogram.Size = new System.Drawing.Size(56, 21);
             this.txtPhonogram.TabIndex = 7;
             this.txtPhonogram.Text = "label2";
+            this.txtPhonogram.Click += new System.EventHandler(this.txtPhonogram_Click);
             // 
             // txtWord
             // 
@@ -117,6 +177,7 @@
             this.txtWord.Size = new System.Drawing.Size(92, 35);
             this.txtWord.TabIndex = 6;
             this.txtWord.Text = "label1";
+            this.txtWord.Click += new System.EventHandler(this.txtWord_Click);
             // 
             // picLogo
             // 
@@ -140,6 +201,26 @@
             this.btnAutoPlay.Text = "Play";
             this.btnAutoPlay.UseVisualStyleBackColor = true;
             this.btnAutoPlay.Click += new System.EventHandler(this.btnAutoPlay_Click);
+            // 
+            // picCoverChinese
+            // 
+            this.picCoverChinese.BackColor = System.Drawing.Color.Transparent;
+            this.picCoverChinese.Location = new System.Drawing.Point(133, 90);
+            this.picCoverChinese.Name = "picCoverChinese";
+            this.picCoverChinese.Size = new System.Drawing.Size(108, 29);
+            this.picCoverChinese.TabIndex = 14;
+            this.picCoverChinese.TabStop = false;
+            this.picCoverChinese.Click += new System.EventHandler(this.picCoverChinese_Click);
+            // 
+            // picCoverEnglish
+            // 
+            this.picCoverEnglish.BackColor = System.Drawing.Color.Transparent;
+            this.picCoverEnglish.Location = new System.Drawing.Point(133, 3);
+            this.picCoverEnglish.Name = "picCoverEnglish";
+            this.picCoverEnglish.Size = new System.Drawing.Size(108, 81);
+            this.picCoverEnglish.TabIndex = 7;
+            this.picCoverEnglish.TabStop = false;
+            this.picCoverEnglish.Click += new System.EventHandler(this.picCoverEnglish_Click);
             // 
             // sssWord
             // 
@@ -176,7 +257,10 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWordCards_KeyPress);
             this.palMain.ResumeLayout(false);
             this.palMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCoverChinese)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).EndInit();
             this.sssWord.ResumeLayout(false);
             this.sssWord.PerformLayout();
             this.ResumeLayout(false);
@@ -197,6 +281,12 @@
         private System.Windows.Forms.Label txtPhonogram;
         private System.Windows.Forms.Label txtWord;
         private System.Windows.Forms.ListBox lstWordList;
+        private System.Windows.Forms.Button btnHideChinese;
+        private System.Windows.Forms.Button btnHideEnglish;
+        private System.Windows.Forms.Button btnMemoryMode;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox picCoverEnglish;
+        private System.Windows.Forms.PictureBox picCoverChinese;
     }
 }
 

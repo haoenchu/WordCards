@@ -81,6 +81,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\sound.png" />
     <None Include="Resources\WordCards_Logo.png" />
     <None Include="Sound\A\A-list.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

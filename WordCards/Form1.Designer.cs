@@ -46,12 +46,14 @@
             this.sssWord = new System.Windows.Forms.StatusStrip();
             this.tsslMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.timPlayer = new System.Windows.Forms.Timer(this.components);
+            this.hide_list = new System.Windows.Forms.PictureBox();
             this.palMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.soundplayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverChinese)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).BeginInit();
             this.sssWord.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hide_list)).BeginInit();
             this.SuspendLayout();
             // 
             // palMain
@@ -70,6 +72,7 @@
             this.palMain.Controls.Add(this.btnAutoPlay);
             this.palMain.Controls.Add(this.picCoverChinese);
             this.palMain.Controls.Add(this.picCoverEnglish);
+            this.palMain.Controls.Add(this.hide_list);
             this.palMain.Dock = System.Windows.Forms.DockStyle.Top;
             this.palMain.Location = new System.Drawing.Point(0, 0);
             this.palMain.Name = "palMain";
@@ -94,7 +97,7 @@
             this.btnMemoryMode.Location = new System.Drawing.Point(475, 148);
             this.btnMemoryMode.Name = "btnMemoryMode";
             this.btnMemoryMode.Size = new System.Drawing.Size(86, 23);
-            this.btnMemoryMode.TabIndex = 12;
+            this.btnMemoryMode.TabIndex = 2;
             this.btnMemoryMode.Text = "背單字模式";
             this.btnMemoryMode.UseVisualStyleBackColor = true;
             this.btnMemoryMode.Click += new System.EventHandler(this.btnMemoryMode_Click);
@@ -105,7 +108,7 @@
             this.btnHideChinese.Location = new System.Drawing.Point(475, 206);
             this.btnHideChinese.Name = "btnHideChinese";
             this.btnHideChinese.Size = new System.Drawing.Size(86, 23);
-            this.btnHideChinese.TabIndex = 11;
+            this.btnHideChinese.TabIndex = 4;
             this.btnHideChinese.Text = "隱藏中文";
             this.btnHideChinese.UseVisualStyleBackColor = true;
             this.btnHideChinese.Click += new System.EventHandler(this.btnHideChinese_Click);
@@ -116,7 +119,7 @@
             this.btnHideEnglish.Location = new System.Drawing.Point(475, 177);
             this.btnHideEnglish.Name = "btnHideEnglish";
             this.btnHideEnglish.Size = new System.Drawing.Size(86, 23);
-            this.btnHideEnglish.TabIndex = 10;
+            this.btnHideEnglish.TabIndex = 3;
             this.btnHideEnglish.Text = "隱藏英文";
             this.btnHideEnglish.UseVisualStyleBackColor = true;
             this.btnHideEnglish.Click += new System.EventHandler(this.btnHideEnglish_Click);
@@ -198,7 +201,7 @@
             this.btnAutoPlay.Location = new System.Drawing.Point(474, 119);
             this.btnAutoPlay.Name = "btnAutoPlay";
             this.btnAutoPlay.Size = new System.Drawing.Size(86, 23);
-            this.btnAutoPlay.TabIndex = 3;
+            this.btnAutoPlay.TabIndex = 1;
             this.btnAutoPlay.Text = "Play";
             this.btnAutoPlay.UseVisualStyleBackColor = true;
             this.btnAutoPlay.Click += new System.EventHandler(this.btnAutoPlay_Click);
@@ -241,8 +244,19 @@
             // 
             // timPlayer
             // 
-            this.timPlayer.Interval = 1000;
+            this.timPlayer.Interval = 200;
             this.timPlayer.Tick += new System.EventHandler(this.timPlayer_Tick);
+            // 
+            // hide_list
+            // 
+            this.hide_list.BackColor = System.Drawing.Color.Transparent;
+            this.hide_list.Enabled = false;
+            this.hide_list.Location = new System.Drawing.Point(0, 0);
+            this.hide_list.Name = "hide_list";
+            this.hide_list.Size = new System.Drawing.Size(120, 247);
+            this.hide_list.TabIndex = 15;
+            this.hide_list.TabStop = false;
+            this.hide_list.Click += new System.EventHandler(this.hide_list_Click);
             // 
             // frmWordCards
             // 
@@ -264,6 +278,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).EndInit();
             this.sssWord.ResumeLayout(false);
             this.sssWord.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.hide_list)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -288,6 +303,7 @@
         private System.Windows.Forms.PictureBox soundplayer;
         private System.Windows.Forms.PictureBox picCoverEnglish;
         private System.Windows.Forms.PictureBox picCoverChinese;
+        private System.Windows.Forms.PictureBox hide_list;
     }
 }
 

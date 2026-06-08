@@ -139,6 +139,9 @@ namespace WordCards
         {
             if (!isMemoryMode)
             {
+                picCoverChinese.SendToBack(); 
+                picCoverEnglish.SendToBack(); 
+                hide_list.Visible = false;
                 return;
             }
 
@@ -147,6 +150,7 @@ namespace WordCards
                 picCoverChinese.Bounds = txtExplain.Bounds;
                 picCoverChinese.BringToFront();  // 蓋住中文
                 picCoverEnglish.SendToBack();
+                hide_list.Visible = false;
             }
             else if (isHideEnglish)
             {
@@ -156,6 +160,8 @@ namespace WordCards
                 picCoverEnglish.BringToFront();  // 蓋住英文
                 picCoverChinese.SendToBack();
 
+                hide_list.Visible = true;
+                hide_list.BringToFront();
             }
         }
 
@@ -404,8 +410,7 @@ namespace WordCards
             {
                 btnMemoryMode.Text = "背單字模式";
                 btnMemoryMode.BackColor = SystemColors.Control;
-                picCoverChinese.SendToBack(); // ← 修正
-                picCoverEnglish.SendToBack(); // ← 修正
+                UpdateCovers();
             }
         }
 
@@ -434,6 +439,10 @@ namespace WordCards
 
         private void pictureBox1_Click_1(object sender, EventArgs e) {
             PlaySelectedWord();
+        }
+
+        private void hide_list_Click(object sender, EventArgs e) {
+
         }
     }
 }

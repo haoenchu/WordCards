@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.palMain = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.soundplayer = new System.Windows.Forms.PictureBox();
             this.btnMemoryMode = new System.Windows.Forms.Button();
             this.btnHideChinese = new System.Windows.Forms.Button();
             this.btnHideEnglish = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.tsslMessage = new System.Windows.Forms.ToolStripStatusLabel();
             this.timPlayer = new System.Windows.Forms.Timer(this.components);
             this.palMain.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundplayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverChinese)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).BeginInit();
@@ -57,7 +57,7 @@
             // palMain
             // 
             this.palMain.BackColor = System.Drawing.Color.NavajoWhite;
-            this.palMain.Controls.Add(this.pictureBox1);
+            this.palMain.Controls.Add(this.soundplayer);
             this.palMain.Controls.Add(this.btnMemoryMode);
             this.palMain.Controls.Add(this.btnHideChinese);
             this.palMain.Controls.Add(this.btnHideEnglish);
@@ -77,15 +77,16 @@
             this.palMain.TabIndex = 0;
             this.palMain.Paint += new System.Windows.Forms.PaintEventHandler(this.palMain_Paint);
             // 
-            // pictureBox1
+            // soundplayer
             // 
-            this.pictureBox1.Image = global::WordCards.Properties.Resources.sound;
-            this.pictureBox1.Location = new System.Drawing.Point(314, 55);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(51, 29);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.soundplayer.Image = global::WordCards.Properties.Resources.sound;
+            this.soundplayer.Location = new System.Drawing.Point(314, 55);
+            this.soundplayer.Name = "soundplayer";
+            this.soundplayer.Size = new System.Drawing.Size(51, 29);
+            this.soundplayer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.soundplayer.TabIndex = 13;
+            this.soundplayer.TabStop = false;
+            this.soundplayer.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // btnMemoryMode
             // 
@@ -134,7 +135,7 @@
             // txtHelp
             // 
             this.txtHelp.ForeColor = System.Drawing.Color.Red;
-            this.txtHelp.Location = new System.Drawing.Point(124, 201);
+            this.txtHelp.Location = new System.Drawing.Point(124, 177);
             this.txtHelp.Name = "txtHelp";
             this.txtHelp.Size = new System.Drawing.Size(109, 34);
             this.txtHelp.TabIndex = 9;
@@ -240,7 +241,7 @@
             // 
             // timPlayer
             // 
-            this.timPlayer.Interval = 200;
+            this.timPlayer.Interval = 1000;
             this.timPlayer.Tick += new System.EventHandler(this.timPlayer_Tick);
             // 
             // frmWordCards
@@ -257,7 +258,7 @@
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmWordCards_KeyPress);
             this.palMain.ResumeLayout(false);
             this.palMain.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.soundplayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverChinese)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCoverEnglish)).EndInit();
@@ -284,7 +285,7 @@
         private System.Windows.Forms.Button btnHideChinese;
         private System.Windows.Forms.Button btnHideEnglish;
         private System.Windows.Forms.Button btnMemoryMode;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox soundplayer;
         private System.Windows.Forms.PictureBox picCoverEnglish;
         private System.Windows.Forms.PictureBox picCoverChinese;
     }

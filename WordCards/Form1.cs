@@ -155,6 +155,7 @@ namespace WordCards
                 picCoverEnglish.Bounds = Rectangle.Union(r1, r2);
                 picCoverEnglish.BringToFront();  // 蓋住英文
                 picCoverChinese.SendToBack();
+
             }
         }
 
@@ -166,6 +167,7 @@ namespace WordCards
         private void picCoverEnglish_Click(object sender, EventArgs e)
         {
             picCoverEnglish.SendToBack();  // 沉底，露出英文
+            
         }
 
         // txtExplain (中文) 被點到 → 重新蓋上
@@ -192,6 +194,7 @@ namespace WordCards
 
         private void btnHideChinese_Click(object sender, EventArgs e)
         {
+
             isHideChinese = true;
             isHideEnglish = false;
             btnHideChinese.BackColor = Color.LightCoral;   // 標記啟用
@@ -317,12 +320,13 @@ namespace WordCards
 
         }
 
-        private void timPlayer_Tick(object sender, EventArgs e)
+        private async void timPlayer_Tick(object sender, EventArgs e)
         {
             // 移到下一個單字
             NextWordList();
             // 顯示並播放目前選取的單字
             PlaySelectedWord();
+            await Task.Delay(3000);
         }
 
         private void btnAutoPlay_Click(object sender, EventArgs e)
@@ -369,6 +373,9 @@ namespace WordCards
                     }
                     e.Handled = true;
                     break;
+                case (char)Keys.F1:
+                    PlaySelectedWord();
+                    break;
             }
         }
 
@@ -376,10 +383,19 @@ namespace WordCards
 
         private void btnMemoryMode_Click(object sender, EventArgs e)
         {
+            
             isMemoryMode = !isMemoryMode;
 
             if (isMemoryMode)
             {
+                if (!isHideChinese && !isHideEnglish) {
+                    MessageBox.Show("請先選擇隱藏中文或英文", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    isMemoryMode = false;
+                    return;
+                }
+                    
+
+
                 btnMemoryMode.Text = "結束背單字";
                 btnMemoryMode.BackColor = Color.LightGreen;
                 UpdateCovers();
@@ -416,5 +432,8 @@ namespace WordCards
 
         }
 
+        private void pictureBox1_Click_1(object sender, EventArgs e) {
+            PlaySelectedWord();
+        }
     }
 }
